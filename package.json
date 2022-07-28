@@ -1,11 +1,11 @@
 {
-  "name": "Style-Sync",
+  "name": "style-sync",
   "version": "1.0.0",
   "description": "Your Figma Plugin",
   "main": "code.js",
   "scripts": {
     "build": "tsc -p tsconfig.json",
-    "watch": "npm run build -- --watch"
+    "watch": "tsc --watch"
   },
   "author": "",
   "license": "",

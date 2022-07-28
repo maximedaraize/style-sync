@@ -1,0 +1,21 @@
+lockfileVersion: 5.4
+
+specifiers:
+  '@figma/plugin-typings': '*'
+  typescript: '*'
+
+devDependencies:
+  '@figma/plugin-typings': 1.49.0
+  typescript: 4.7.4
+
+packages:
+
+  /@figma/plugin-typings/1.49.0:
+    resolution: {integrity: sha512-72tKC61RPkrBZ+uzj+TtL3bVAmxahZKv/TfElbrY9sBoZvr4/+4gw7hnJYiln5xBJHiJ4KTcjUy+6D1qUuWlTA==}
+    dev: true
+
+  /typescript/4.7.4:
+    resolution: {integrity: sha512-C0WQT0gezHuw6AdY1M2jxUO83Rjf0HP7Sk1DtXj6j1EwkQNZrHAg2XPWlq62oqEhYvONq5pkC2Y9oPljWToLmQ==}
+    engines: {node: '>=4.2.0'}
+    hasBin: true
+    dev: true
