@@ -58,12 +58,18 @@
     align-items: center;
     justify-content: flex-end;
     column-gap: 8px;
-    margin-top: 64px;
-    margin-bottom: 8px;
+    margin-top: 48px;
   }
 
   input[type="checkbox"] {
     margin-left: 0;
+  }
+
+  footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 16px;
   }
 </style>
 <p>Match sRGB properties of solid colors:</p>
@@ -79,9 +85,12 @@
   <button id="cancel">Cancel</button>
   <button id="create" class="primary">Apply</button>
 </div>
-<a href="https://www.github.com/maximedaraize/style-sync"
-  >Open a issue on Github</a
->
+<footer>
+  <p id="version">v1.0.0</p>
+  <a href="https://www.github.com/maximedaraize/style-sync"
+    >Open a issue on Github</a
+  >
+</footer>
 
 <script>
   document.getElementById("create").onclick = () => {
