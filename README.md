@@ -3,7 +3,7 @@
 **Table of Contents:**
 
 * [Style Sync](#style-sync)
-* [Our Standards](#use-gudie)
+* [User Guide](#user-gudie)
 * [Contribution](#contribution)
 * [Project setup](#project-setup)
 
