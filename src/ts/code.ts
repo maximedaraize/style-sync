@@ -1,5 +1,5 @@
 let colorStylesId = [];
-let colorStylesValues = []
+let colorStylesValues = [] 
 let countStyles = [];
 figma.getLocalPaintStyles().forEach(sytleId => colorStylesId.push(sytleId.id))
 

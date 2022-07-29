@@ -2,9 +2,9 @@
   "name": "Style Sync",
   "id": "1134483555861502888",
   "api": "1.0.0",
-  "main": "code.js",
+  "main": "dist/code.js",
   "editorType": [
     "figma"
   ],
-  "ui": "ui.html"
+  "ui": "src/ui.html"
 }

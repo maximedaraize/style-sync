@@ -3,6 +3,8 @@
     "target": "es6",
     "lib": ["es6"],
     "typeRoots": ["./node_modules/@types", "./node_modules/@figma"],
-    "removeComments": true
+    "removeComments": true,
+    "rootDir": "src/ts/",
+    "outDir": "dist/"
   }
 }
