@@ -1,5 +1,12 @@
 ![cover](src/img/cover.jpg)
 
+**Table of Contents:**
+
+* [Style Sync](#style-sync)
+* [Our Standards](#use-gudie)
+* [Contribution](#contribution)
+* [Project setup](#project-setup)
+
 # Style Sync
 
 This is a plugin for Figma that apply styles in your entire projects files to elements that match those styles properties automaticly.
@@ -16,11 +23,15 @@ Apply your colors styles to each element with the same sRBG value. For example, 
 
 ## Contribution
 
-You can contribute to this project, by creating an issue, by starting a discussion, sharing the project, etc.
+You can contribute to this project by:
+- creating an issue
+- starting a discussion
+- sharing ideas
+- etc
 
 Please reade our[ code of conduct](https://github.com/maximedaraize/style-sync/blob/develop/.github/CODE_OF_CONDUCT.md)
 
-### Project setup
+## Project setup
 
 Below are the steps to get your plugin running. You can also find instructions at:
 
