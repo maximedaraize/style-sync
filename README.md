@@ -1,3 +1,29 @@
+![cover](src/img/cover.jpg)
+
+# Style Sync
+
+This is a plugin for Figma that apply styles in your entire projects files to elements that match those styles properties automaticly.
+## User Guide
+
+When running the plugin, you will be prompted to seclect a style category to apply to your elements.
+Select the category that you want to apply to your elements, then click on the "Apply" button.
+
+
+### Colors
+
+Apply your colors styles to each element with the same sRBG value. For example, if you have a style called `brand-blue` with the value `#235DF2`, you can apply it to all elements with the same value.
+
+
+## Collaborator
+
+### Contribution
+
+You can contribute to this project, by creating an issue, by starting a discussion, sharing the project, etc.
+
+Please reade our[ code of conduct](https://github.com/maximedaraize/style-sync/blob/develop/.github/CODE_OF_CONDUCT.md)
+
+### Project setup
+
 Below are the steps to get your plugin running. You can also find instructions at:
 
   https://www.figma.com/plugin-docs/setup/
@@ -38,3 +64,4 @@ We recommend writing TypeScript code using Visual Studio code:
     you reopen Visual Studio Code.
 
 That's it! Visual Studio Code will regenerate the JavaScript file every time you save.
+
