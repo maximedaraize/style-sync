@@ -14,9 +14,7 @@ Select the category that you want to apply to your elements, then click on the "
 Apply your colors styles to each element with the same sRBG value. For example, if you have a style called `brand-blue` with the value `#235DF2`, you can apply it to all elements with the same value.
 
 
-## Collaborator
-
-### Contribution
+## Contribution
 
 You can contribute to this project, by creating an issue, by starting a discussion, sharing the project, etc.
 
