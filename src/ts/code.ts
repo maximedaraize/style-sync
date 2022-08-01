@@ -39,5 +39,5 @@ figma.ui.onmessage = msg => {
     }
   }
 
-  // figma.closePlugin();
+  figma.closePlugin();
 };
