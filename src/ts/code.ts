@@ -16,17 +16,20 @@ figma.ui.onmessage = msg => {
           if (node.type != "INSTANCE") {
             for (const child of node.children) {
               traverse(child)
-                if (child.fillStyleId === '' && JSON.stringify(colorStylesValues).includes(JSON.stringify(child.fills[0].color))) {           
+              console.log(child.fills  )
+              if (child.fills && child.fills.length > 0) {
+                if (child.fillStyleId === '' && JSON.stringify(colorStylesValues).includes(JSON.stringify(child.fills[0].color))) {
                   let styleId = '';
                   figma.getLocalPaintStyles().forEach(item => {
                     if (JSON.stringify(item.paints[0].color) === JSON.stringify(child.fills[0].color)) {
                       countStyles.push(item.id)
-                       styleId = item.id
+                      styleId = item.id
                       return styleId
                     }
                   })
-                  child.fillStyleId = styleId;   
+                  child.fillStyleId = styleId;
                 }
+              }
             }
           }
         }
@@ -36,5 +39,5 @@ figma.ui.onmessage = msg => {
     }
   }
 
-  figma.closePlugin();
+  // figma.closePlugin();
 };
