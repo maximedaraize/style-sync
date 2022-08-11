@@ -17,7 +17,7 @@ let textStylesValuesLetterValue = []
 let textStylesValuesCase = [] 
 let textStylesValuesDecoration = [] 
 let textStylesValuesLineUnit = [] 
-let textStylesValuesLinevalue = [] 
+let textStylesValuesLineValue = [] 
 
 figma.getLocalTextStyles().forEach(sytleId => textStylesId.push(sytleId.id))
 
@@ -30,7 +30,7 @@ textStylesId.forEach(id => {
     textStylesValuesCase.push(figma.getStyleById(id).textCase),
     textStylesValuesDecoration.push(figma.getStyleById(id).textDecoration),
     textStylesValuesLineUnit.push(figma.getStyleById(id).lineHeight.unit),
-    textStylesValuesLinevalue.push(figma.getStyleById(id).lineHeight.value)
+    textStylesValuesLineValue.push(figma.getStyleById(id).lineHeight.value)
 })
 
 let countStyles = [];
@@ -60,8 +60,9 @@ figma.ui.onmessage = msg => {
               }
               if (msg.styleCategory.typo === true) {
                 if (child.fontName) {
-                  if (child.textStyleId === ''
-                    && (JSON.stringify(textStylesValuesFamily).includes(JSON.stringify(child.fontName.family)))
+                  if (child.textStyleId === '') {
+                    if (JSON.stringify(textStylesValuesLineUnit).includes("AUTO")) {
+                      (JSON.stringify(textStylesValuesFamily).includes(JSON.stringify(child.fontName.family)))
                     && (JSON.stringify(textStylesValuesStyle).includes(JSON.stringify(child.fontName.style)))
                     && (JSON.stringify(textStylesValuesSize).includes(JSON.stringify(child.fontSize)))
                     && (JSON.stringify(textStylesValuesCase).includes(JSON.stringify(child.textCase)))
@@ -69,28 +70,56 @@ figma.ui.onmessage = msg => {
                     && (JSON.stringify(textStylesValuesLetterUnit).includes(JSON.stringify(child.letterSpacing.unit)))
                     && (JSON.stringify(textStylesValuesLetterValue).includes(JSON.stringify(child.letterSpacing.value)))
                     && (JSON.stringify(textStylesValuesLineUnit).includes(JSON.stringify(child.lineHeight.unit)))
-                    && (JSON.stringify(textStylesValuesLinevalue).includes(JSON.stringify(child.lineHeight.value)))
-                  ) {
-                    let textStyleId = '';
-                    console.log('dedans',child)
-                    figma.getLocalTextStyles().forEach(item => {
-                      if (
-                        (JSON.stringify(item.fontName.family) === JSON.stringify(child.fontName.family))
-                        && (JSON.stringify(item.fontName.style) === JSON.stringify(child.fontName.style))
-                        && (JSON.stringify(item.fontSize) === JSON.stringify(child.fontSize))
-                        && (JSON.stringify(item.textCase) === JSON.stringify(child.textCase))
-                        && (JSON.stringify(item.textDecoration) === JSON.stringify(child.textDecoration))
-                        && (JSON.stringify(item.letterSpacing.unit) === JSON.stringify(child.letterSpacing.unit))
-                        && (JSON.stringify(item.letterSpacing.value) === JSON.stringify(child.letterSpacing.value))
-                        && (JSON.stringify(item.lineHeight.unit) === JSON.stringify(child.lineHeight.unit))
-                        && (JSON.stringify(item.lineHeight.value) === JSON.stringify(child.lineHeight.value))
-                      ) {
-                      countStyles.push(item.id)
-                      textStyleId = item.id
-                      return textStyleId
+                      let textStyleId = '';
+                      console.log('dedans', child)
+                      figma.getLocalTextStyles().forEach(item => {
+                        if (
+                          (JSON.stringify(item.fontName.family) === JSON.stringify(child.fontName.family))
+                          && (JSON.stringify(item.fontName.style) === JSON.stringify(child.fontName.style))
+                          && (JSON.stringify(item.fontSize) === JSON.stringify(child.fontSize))
+                          && (JSON.stringify(item.textCase) === JSON.stringify(child.textCase))
+                          && (JSON.stringify(item.textDecoration) === JSON.stringify(child.textDecoration))
+                          && (JSON.stringify(item.letterSpacing.unit) === JSON.stringify(child.letterSpacing.unit))
+                          && (JSON.stringify(item.letterSpacing.value) === JSON.stringify(child.letterSpacing.value))
+                          && (JSON.stringify(item.lineHeight.unit) === JSON.stringify(child.lineHeight.unit))
+                        ) {
+                          countStyles.push(item.id)
+                          textStyleId = item.id
+                          return textStyleId
+                        }
+                      })
+                      child.textStyleId = textStyleId;
+                    } else {
+                       (JSON.stringify(textStylesValuesFamily).includes(JSON.stringify(child.fontName.family)))
+                    && (JSON.stringify(textStylesValuesStyle).includes(JSON.stringify(child.fontName.style)))
+                    && (JSON.stringify(textStylesValuesSize).includes(JSON.stringify(child.fontSize)))
+                    && (JSON.stringify(textStylesValuesCase).includes(JSON.stringify(child.textCase)))
+                    && (JSON.stringify(textStylesValuesDecoration).includes(JSON.stringify(child.textDecoration)))
+                    && (JSON.stringify(textStylesValuesLetterUnit).includes(JSON.stringify(child.letterSpacing.unit)))
+                    && (JSON.stringify(textStylesValuesLetterValue).includes(JSON.stringify(child.letterSpacing.value)))
+                    && (JSON.stringify(textStylesValuesLineValue).includes(JSON.stringify(child.lineHeight.value)))
+                    && (JSON.stringify(textStylesValuesLineUnit).includes(JSON.stringify(child.lineHeight.unit)))
+                      
+                      let textStyleId = '';
+                      console.log('dedans', child)
+                      figma.getLocalTextStyles().forEach(item => {
+                        if (
+                          (JSON.stringify(item.fontName.family) === JSON.stringify(child.fontName.family))
+                          && (JSON.stringify(item.fontName.style) === JSON.stringify(child.fontName.style))
+                          && (JSON.stringify(item.fontSize) === JSON.stringify(child.fontSize))
+                          && (JSON.stringify(item.textCase) === JSON.stringify(child.textCase))
+                          && (JSON.stringify(item.textDecoration) === JSON.stringify(child.textDecoration))
+                          && (JSON.stringify(item.letterSpacing.unit) === JSON.stringify(child.letterSpacing.unit))
+                          && (JSON.stringify(item.letterSpacing.value) === JSON.stringify(child.letterSpacing.value))
+                          && (JSON.stringify(item.lineHeight.unit) === JSON.stringify(child.lineHeight.unit))
+                          && (JSON.stringify(item.lineHeight.value) === JSON.stringify(child.lineHeight.value))
+                        ) {
+                          countStyles.push(item.id)
+                          textStyleId = item.id
+                          return textStyleId
+                        }
+                      })
                     }
-                    })
-                    child.textStyleId = textStyleId;
                   }
                 }
               }
@@ -106,6 +135,5 @@ figma.ui.onmessage = msg => {
       figma.notify(countStyles.length > 0 ? `${countStyles.length} text styles applied` : 'No text style applied');
     }
   }
-
   figma.closePlugin();
 };
