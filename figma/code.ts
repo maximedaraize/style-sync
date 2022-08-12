@@ -1,3 +1,4 @@
+/// <reference types="@figma/plugin-typings" />
 // Colors
 let colorStylesId = [];
 let colorStylesValues = [] 
@@ -36,6 +37,7 @@ textStylesId.forEach(id => {
 let countStyles = [];
 
 figma.showUI(__html__);
+figma.ui.resize(320, 220);
 figma.ui.onmessage = msg => {
   if (msg.type === 'apply-styles') {
       function traverse(node: any) {
@@ -43,7 +45,7 @@ figma.ui.onmessage = msg => {
           if (node.type != "INSTANCE") {
             for (const child of node.children) {
               traverse(child)
-              if (msg.styleCategory.color === true) {
+              if (msg.color === 'Color') {
                 if (child.fills && child.fills[0].type === 'SOLID' && child.fills.length > 0) {
                   if (child.fillStyleId === '' && JSON.stringify(colorStylesValues).includes(JSON.stringify(child.fills[0].color))) {
                     let styleId = '';
@@ -58,7 +60,7 @@ figma.ui.onmessage = msg => {
                   }
                 }
               }
-              if (msg.styleCategory.typo === true) {
+              if (msg.text === 'Text') {
                 if (child.fontName) {
                   if (child.textStyleId === '') {
                     if (JSON.stringify(textStylesValuesLineUnit).includes("AUTO")) {
@@ -71,7 +73,6 @@ figma.ui.onmessage = msg => {
                     && (JSON.stringify(textStylesValuesLetterValue).includes(JSON.stringify(child.letterSpacing.value)))
                     && (JSON.stringify(textStylesValuesLineUnit).includes(JSON.stringify(child.lineHeight.unit)))
                       let textStyleId = '';
-                      console.log('dedans', child)
                       figma.getLocalTextStyles().forEach(item => {
                         if (
                           (JSON.stringify(item.fontName.family) === JSON.stringify(child.fontName.family))
@@ -101,7 +102,6 @@ figma.ui.onmessage = msg => {
                     && (JSON.stringify(textStylesValuesLineUnit).includes(JSON.stringify(child.lineHeight.unit)))
                       
                       let textStyleId = '';
-                      console.log('dedans', child)
                       figma.getLocalTextStyles().forEach(item => {
                         if (
                           (JSON.stringify(item.fontName.family) === JSON.stringify(child.fontName.family))
@@ -128,10 +128,10 @@ figma.ui.onmessage = msg => {
         }
       }
     traverse(figma.root) // start the traversal at the root
-    if (msg.styleCategory.color === true) {
+    if (msg.color === 'Color') {
       figma.notify(countStyles.length > 0 ? `${countStyles.length} styles applied` : 'No style applied');
     }
-    if (msg.styleCategory.typo === true) {
+    if (msg.text === 'Text') {
       figma.notify(countStyles.length > 0 ? `${countStyles.length} text styles applied` : 'No text style applied');
     }
   }
