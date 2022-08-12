@@ -1,10 +1,19 @@
 {
   "compilerOptions": {
-    "target": "es6",
-    "lib": ["es6"],
-    "typeRoots": ["./node_modules/@types", "./node_modules/@figma"],
-    "removeComments": true,
-    "rootDir": "src/ts/",
-    "outDir": "dist/"
-  }
+    "target": "esnext",
+    "useDefineForClassFields": true,
+    "module": "esnext",
+    "moduleResolution": "node",
+    "strict": true,
+    "jsx": "preserve",
+    "sourceMap": true,
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "esModuleInterop": true,
+    "lib": ["esnext", "dom"],
+    "skipLibCheck": true,
+    "allowJs": true
+  },
+  "include": ["src/**/*.ts", "src/**/*.d.ts", "src/**/*.tsx", "src/**/*.vue"],
+  "references": [{ "path": "./tsconfig.node.json" }]
 }
