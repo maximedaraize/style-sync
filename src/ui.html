@@ -1,3 +1,7 @@
+<link
+  rel="stylesheet"
+  href="../../node_modules/figma-plugin-ds/dist/figma-plugin-ds.css"
+/>
 <style>
   * {
     font-family: "Inter", sans-serif;
@@ -15,32 +19,6 @@
     margin-bottom: 8px;
   }
 
-  input[type="checkbox"] {
-    margin-left: 0;
-  }
-
-  button {
-    min-width: 64px;
-    height: 30px;
-    padding: 7px 12px;
-    border-width: 1px;
-    border-style: solid;
-    border-radius: 6px;
-    cursor: pointer;
-  }
-
-  button.primary {
-    color: #fff;
-    background-color: #18a0fb;
-    border-color: #18a0fb;
-  }
-
-  button.secondary {
-    color: rgba(0, 0, 0, 0.8);
-    background-color: #fff;
-    border-color: rgba(0, 0, 0, 0.8);
-  }
-
   .flex {
     display: flex;
     align-items: center;
@@ -52,7 +30,9 @@
     align-items: center;
     justify-content: flex-end;
     column-gap: 8px;
-    margin-top: 72px;
+    margin-top: 24px;
+    padding-top: 8px;
+    border-top: 1px solid #ebebeb;
   }
 
   footer {
@@ -60,20 +40,37 @@
     align-items: center;
     justify-content: space-between;
     margin-top: 8px;
+    padding-top: 8px;
+    border-top: 1px solid #ebebeb;
   }
 </style>
 
-<p>Match sRGB properties of solid colors:</p>
-<label for="color" class="flex">
-  <input id="color" type="checkbox" name="color" checked />
-  Color
-</label>
-<div class="button-group">
-  <button id="cancel">Cancel</button>
-  <button id="create" class="primary">Apply</button>
+<!-- Section title -->
+<div class="section-title">Style Selection</div>
+
+<!-- Radio button -->
+<div class="radio">
+  <input id="color" type="radio" class="radio__button" name="style" checked />
+  <label for="color" class="radio__label">Color Styles</label>
 </div>
+<!-- Radio button -->
+<div class="radio">
+  <input id="typo" type="radio" class="radio__button" name="style" />
+  <label
+    for="typo"
+    class="radio__label"
+    title="Font-Family, Font-Style, Font-Size, Line-Height, Letter-Spacing, Text-Decoration, Case"
+    >Text Style</label
+  >
+</div>
+
+<div class="button-group">
+  <button id="cancel" class="button button--secondary">Cancel</button>
+  <button id="create" class="button button--primary">Sync Color</button>
+</div>
+
 <footer>
-  <p id="version">v1.1.1</p>
+  <p id="version">v1.2.0</p>
   <a
     href="https://www.github.com/maximedaraize/style-sync"
     target="_blank"
@@ -83,9 +80,21 @@
   >
 </footer>
 <script>
+  // Dynamic text content for button
+  let buttonCreate = document.getElementById("create");
+
+  document.getElementById("color").onclick = () => {
+    buttonCreate.textContent = "Sync Color";
+  };
+  document.getElementById("typo").onclick = () => {
+    buttonCreate.textContent = "Sync Text";
+  };
+
+  // Send props to code.ts
   document.getElementById("create").onclick = () => {
     const styleCategory = {
       color: document.getElementById("color").checked,
+      typo: document.getElementById("typo").checked,
     };
     parent.postMessage(
       { pluginMessage: { type: "apply-styles", styleCategory } },
