@@ -2,7 +2,11 @@ lockfileVersion: 5.4
 
 specifiers:
   '@figma/plugin-typings': '*'
+  figma-plugin-ds: ^1.0.1
   typescript: '*'
+
+dependencies:
+  figma-plugin-ds: 1.0.1
 
 devDependencies:
   '@figma/plugin-typings': 1.49.0
@@ -13,6 +17,10 @@ packages:
   /@figma/plugin-typings/1.49.0:
     resolution: {integrity: sha512-72tKC61RPkrBZ+uzj+TtL3bVAmxahZKv/TfElbrY9sBoZvr4/+4gw7hnJYiln5xBJHiJ4KTcjUy+6D1qUuWlTA==}
     dev: true
+
+  /figma-plugin-ds/1.0.1:
+    resolution: {integrity: sha512-j1/mcHeYx8IRzdLbNyqo9PQXqtI3ujN/RfjuXFS7OintJojuXG2GuaL8COzqAH66ZPXx4aFHMkqRjbBaudBCpA==}
+    dev: false
 
   /typescript/4.7.4:
     resolution: {integrity: sha512-C0WQT0gezHuw6AdY1M2jxUO83Rjf0HP7Sk1DtXj6j1EwkQNZrHAg2XPWlq62oqEhYvONq5pkC2Y9oPljWToLmQ==}

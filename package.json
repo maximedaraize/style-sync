@@ -1,6 +1,6 @@
 {
   "name": "style-sync",
-  "version": "1.1.1",
+  "version": "1.2.0",
   "description": "Your Figma Plugin",
   "main": "code.js",
   "scripts": {
@@ -12,5 +12,8 @@
   "devDependencies": {
     "@figma/plugin-typings": "*",
     "typescript": "*"
+  },
+  "dependencies": {
+    "figma-plugin-ds": "^1.0.1"
   }
 }
