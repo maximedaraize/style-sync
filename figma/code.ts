@@ -62,7 +62,6 @@ figma.ui.onmessage = msg => {
               }
               if (msg.text === 'Text') {
                 if (child.fontName) {
-                  if (child.textStyleId === '') {
                     if (JSON.stringify(textStylesValuesLineUnit).includes("AUTO")) {
                       (JSON.stringify(textStylesValuesFamily).includes(JSON.stringify(child.fontName.family)))
                     && (JSON.stringify(textStylesValuesStyle).includes(JSON.stringify(child.fontName.style)))
@@ -120,7 +119,7 @@ figma.ui.onmessage = msg => {
                         }
                       })
                     }
-                  }
+                  
                 }
               }
             }
