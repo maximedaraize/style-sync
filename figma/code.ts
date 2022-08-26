@@ -42,12 +42,12 @@ figma.ui.onmessage = msg => {
   if (msg.type === 'apply-styles') {
       function traverse(node: any) {
         if ("children" in node) {
-          if (node.type != "INSTANCE") {
             for (const child of node.children) {
               traverse(child)
               if (msg.color === 'Color') {
-                if (child.fills && child.fills[0].type === 'SOLID' && child.fills.length > 0) {
-                  if (child.fillStyleId === '' && JSON.stringify(colorStylesValues).includes(JSON.stringify(child.fills[0].color))) {
+                if ((child.fills && child.fills.length > 0) && (child.fills[0].type && child.fills[0].type === 'SOLID')) {
+                  if (JSON.stringify(colorStylesValues).includes(JSON.stringify(child.fills[0].color))) {
+                   
                     let styleId = '';
                     figma.getLocalPaintStyles().forEach(item => {
                       if (JSON.stringify(item.paints[0].color) === JSON.stringify(child.fills[0].color)) {
@@ -62,7 +62,6 @@ figma.ui.onmessage = msg => {
               }
               if (msg.text === 'Text') {
                 if (child.fontName) {
-                  if (child.textStyleId === '') {
                     if (JSON.stringify(textStylesValuesLineUnit).includes("AUTO")) {
                       (JSON.stringify(textStylesValuesFamily).includes(JSON.stringify(child.fontName.family)))
                     && (JSON.stringify(textStylesValuesStyle).includes(JSON.stringify(child.fontName.style)))
@@ -120,11 +119,10 @@ figma.ui.onmessage = msg => {
                         }
                       })
                     }
-                  }
+                  
                 }
               }
             }
-          }
         }
       }
     traverse(figma.root) // start the traversal at the root
