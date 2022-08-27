@@ -9,6 +9,8 @@
 
 # Style Sync
 
+[Figma plugin link](https://www.figma.com/community/plugin/1134483555861502888/Style-Sync)
+
 This is a plugin for Figma that apply styles in your entire projects files to elements that match those styles properties automaticly.
 ## User Guide
 
