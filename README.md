@@ -1,6 +1,6 @@
 ![cover](src/img/cover.jpg)
 
-**Table of Contents:**
+**Table of Contents:** 
 
 * [Style Sync](#style-sync)
 * [User Guide](#user-guide)
