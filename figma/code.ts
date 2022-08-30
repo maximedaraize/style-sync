@@ -44,7 +44,9 @@ figma.ui.onmessage = msg => {
         if ("children" in node) {
             for (const child of node.children) {
               traverse(child)
+              
               if (msg.color === 'Color') {
+                if(child.visible === true) {
                 if ((child.fills && child.fills.length > 0) && (child.fills[0].type && child.fills[0].type === 'SOLID')) {
                   if (JSON.stringify(colorStylesValues).includes(JSON.stringify(child.fills[0].color))) {
                    
@@ -60,7 +62,9 @@ figma.ui.onmessage = msg => {
                   }
                 }
               }
+              }
               if (msg.text === 'Text') {
+                if(child.visible === true) {
                 if (child.fontName) {
                     if (JSON.stringify(textStylesValuesLineUnit).includes("AUTO")) {
                       (JSON.stringify(textStylesValuesFamily).includes(JSON.stringify(child.fontName.family)))
@@ -121,8 +125,9 @@ figma.ui.onmessage = msg => {
                     }
                   
                 }
-              }
+                }
             }
+          }
         }
       }
     traverse(figma.root) // start the traversal at the root
@@ -133,5 +138,5 @@ figma.ui.onmessage = msg => {
       figma.notify(countStyles.length > 0 ? `${countStyles.length} text styles applied` : 'No text style applied');
     }
   }
-  figma.closePlugin();
+  // figma.closePlugin();
 };
