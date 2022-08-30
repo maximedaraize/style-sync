@@ -138,5 +138,5 @@ figma.ui.onmessage = msg => {
       figma.notify(countStyles.length > 0 ? `${countStyles.length} text styles applied` : 'No text style applied');
     }
   }
-  // figma.closePlugin();
+  figma.closePlugin();
 };
