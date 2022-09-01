@@ -1,10 +1,14 @@
 /// <reference types="@figma/plugin-typings" />
 // Colors
 let colorStylesId = [];
-let colorStylesValues = [] 
+let colorStylesValues = [];
+let opacityStylesValues = []
+
 figma.getLocalPaintStyles().forEach(sytleId => colorStylesId.push(sytleId.id))
+
 colorStylesId.forEach(id => {
-  return colorStylesValues.push(figma.getStyleById(id).paints[0].color);
+  return colorStylesValues.push(figma.getStyleById(id).paints[0].color),
+  opacityStylesValues.push(figma.getStyleById(id).paints[0].opacity);
 })
 
 // Texts
@@ -44,16 +48,18 @@ figma.ui.onmessage = msg => {
         if ("children" in node) {
             for (const child of node.children) {
               traverse(child)
+              console.log(child)
               
               if (msg.color === 'Color') {
                 if(child.visible === true) {
-                  console.log(child)
                 if ((child.fills && child.fills.length > 0) && (child.fills[0].type && child.fills[0].type === 'SOLID' && child.fills[0].visible === true)) {
-                  if (JSON.stringify(colorStylesValues).includes(JSON.stringify(child.fills[0].color))) {
+                  if (JSON.stringify(colorStylesValues).includes(JSON.stringify(child.fills[0].color)) 
+                  && JSON.stringify(opacityStylesValues).includes(JSON.stringify(child.fills[0].opacity))) {
                    
                     let styleId = '';
                     figma.getLocalPaintStyles().forEach(item => {
-                      if (JSON.stringify(item.paints[0].color) === JSON.stringify(child.fills[0].color)) {
+                      if (JSON.stringify(item.paints[0].color) === JSON.stringify(child.fills[0].color) 
+                      && JSON.stringify(item.paints[0].opacity) === JSON.stringify(child.fills[0].opacity)) {
                         countStyles.push(item.id)
                         styleId = item.id
                         return styleId
