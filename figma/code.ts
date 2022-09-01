@@ -47,7 +47,8 @@ figma.ui.onmessage = msg => {
               
               if (msg.color === 'Color') {
                 if(child.visible === true) {
-                if ((child.fills && child.fills.length > 0) && (child.fills[0].type && child.fills[0].type === 'SOLID')) {
+                  console.log(child)
+                if ((child.fills && child.fills.length > 0) && (child.fills[0].type && child.fills[0].type === 'SOLID' && child.fills[0].visible === true)) {
                   if (JSON.stringify(colorStylesValues).includes(JSON.stringify(child.fills[0].color))) {
                    
                     let styleId = '';
@@ -138,5 +139,5 @@ figma.ui.onmessage = msg => {
       figma.notify(countStyles.length > 0 ? `${countStyles.length} text styles applied` : 'No text style applied');
     }
   }
-  figma.closePlugin();
+  // figma.closePlugin();
 };
