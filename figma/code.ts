@@ -1,10 +1,14 @@
 /// <reference types="@figma/plugin-typings" />
 // Colors
 let colorStylesId = [];
-let colorStylesValues = [] 
+let colorStylesValues = [];
+let opacityStylesValues = []
+
 figma.getLocalPaintStyles().forEach(sytleId => colorStylesId.push(sytleId.id))
+
 colorStylesId.forEach(id => {
-  return colorStylesValues.push(figma.getStyleById(id).paints[0].color);
+  return colorStylesValues.push(figma.getStyleById(id).paints[0].color),
+  opacityStylesValues.push(figma.getStyleById(id).paints[0].opacity);
 })
 
 // Texts
@@ -44,13 +48,18 @@ figma.ui.onmessage = msg => {
         if ("children" in node) {
             for (const child of node.children) {
               traverse(child)
+              console.log(child)
+              
               if (msg.color === 'Color') {
-                if ((child.fills && child.fills.length > 0) && (child.fills[0].type && child.fills[0].type === 'SOLID')) {
-                  if (JSON.stringify(colorStylesValues).includes(JSON.stringify(child.fills[0].color))) {
+                if(child.visible === true) {
+                if ((child.fills && child.fills.length > 0) && (child.fills[0].type && child.fills[0].type === 'SOLID' && child.fills[0].visible === true)) {
+                  if (JSON.stringify(colorStylesValues).includes(JSON.stringify(child.fills[0].color)) 
+                  && JSON.stringify(opacityStylesValues).includes(JSON.stringify(child.fills[0].opacity))) {
                    
                     let styleId = '';
                     figma.getLocalPaintStyles().forEach(item => {
-                      if (JSON.stringify(item.paints[0].color) === JSON.stringify(child.fills[0].color)) {
+                      if (JSON.stringify(item.paints[0].color) === JSON.stringify(child.fills[0].color) 
+                      && JSON.stringify(item.paints[0].opacity) === JSON.stringify(child.fills[0].opacity)) {
                         countStyles.push(item.id)
                         styleId = item.id
                         return styleId
@@ -60,7 +69,9 @@ figma.ui.onmessage = msg => {
                   }
                 }
               }
+              }
               if (msg.text === 'Text') {
+                if(child.visible === true) {
                 if (child.fontName) {
                     if (JSON.stringify(textStylesValuesLineUnit).includes("AUTO")) {
                       (JSON.stringify(textStylesValuesFamily).includes(JSON.stringify(child.fontName.family)))
@@ -121,8 +132,9 @@ figma.ui.onmessage = msg => {
                     }
                   
                 }
-              }
+                }
             }
+          }
         }
       }
     traverse(figma.root) // start the traversal at the root
@@ -133,5 +145,5 @@ figma.ui.onmessage = msg => {
       figma.notify(countStyles.length > 0 ? `${countStyles.length} text styles applied` : 'No text style applied');
     }
   }
-  figma.closePlugin();
+  // figma.closePlugin();
 };
