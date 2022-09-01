@@ -36,7 +36,7 @@ const cancel = () => {
     </div>
 
     <footer>
-        <p id="version">v1.6.0</p>
+        <p id="version">v1.4.0</p>
         <a href="https://www.github.com/maximedaraize/style-sync" target="_blank" rel="noopener noreferrer"> Open a issue on Github</a>
     </footer>
 </template>
