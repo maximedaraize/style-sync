@@ -41,7 +41,7 @@ textStylesId.forEach(id => {
 let countStyles = [];
 
 figma.showUI(__html__);
-figma.ui.resize(320, 240);
+figma.ui.resize(320, 264);
 figma.ui.onmessage = msg => {
   if (msg.type === 'apply-styles') {
       function traverse(node: any) {
