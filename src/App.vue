@@ -53,7 +53,7 @@ const cancel = () => {
   </div>
 
   <footer>
-    <p id="version">v1.4.1</p>
+    <p id="version">v1.5.0</p>
     <a href="https://www.github.com/maximedaraize/style-sync" target="_blank" rel="noopener noreferrer"> Open a issue on
       Github</a>
   </footer>
@@ -85,18 +85,16 @@ p {
 .button-group {
   display: flex;
   align-items: center;
-  margin-top: 32px;
   column-gap: 8px;
-  padding: 8px;
+  padding: 16px;
   justify-content: flex-end;
-  border-top: 1px solid #ebebeb;
 }
 
 footer {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding-inline: 8px;
+  padding-inline: 16px;
   border-top: 1px solid #ebebeb;
 }
 </style>
