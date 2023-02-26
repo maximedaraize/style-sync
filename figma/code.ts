@@ -41,7 +41,7 @@ textStylesId.forEach(id => {
 let countStyles = [];
 
 figma.showUI(__html__);
-figma.ui.resize(320, 220);
+figma.ui.resize(320, 240);
 figma.ui.onmessage = msg => {
   if (msg.type === 'apply-styles') {
       function traverse(node: any) {
@@ -55,7 +55,7 @@ figma.ui.onmessage = msg => {
                 if ((child.fills && child.fills.length > 0) && (child.fills[0].type && child.fills[0].type === 'SOLID' && child.fills[0].visible === true)) {
                   if (JSON.stringify(colorStylesValues).includes(JSON.stringify(child.fills[0].color)) 
                   && JSON.stringify(opacityStylesValues).includes(JSON.stringify(child.fills[0].opacity))) {
-                   
+                    
                     let styleId = '';
                     figma.getLocalPaintStyles().forEach(item => {
                       if (JSON.stringify(item.paints[0].color) === JSON.stringify(child.fills[0].color) 
@@ -101,7 +101,7 @@ figma.ui.onmessage = msg => {
                       })
                       child.textStyleId = textStyleId;
                     } else {
-                       (JSON.stringify(textStylesValuesFamily).includes(JSON.stringify(child.fontName.family)))
+                      (JSON.stringify(textStylesValuesFamily).includes(JSON.stringify(child.fontName.family)))
                     && (JSON.stringify(textStylesValuesStyle).includes(JSON.stringify(child.fontName.style)))
                     && (JSON.stringify(textStylesValuesSize).includes(JSON.stringify(child.fontSize)))
                     && (JSON.stringify(textStylesValuesCase).includes(JSON.stringify(child.textCase)))
@@ -137,7 +137,12 @@ figma.ui.onmessage = msg => {
           }
         }
       }
-    traverse(figma.root) // start the traversal at the root
+    if(msg.locationSelected.changeLocation === "project") {
+      traverse(figma.root) // start the traversal at the root
+      }
+    if(msg.locationSelected.changeLocation === "page") {
+      traverse(figma.currentPage) // start the traversal at the current page
+    }
     if (msg.color === 'Color') {
       figma.notify(countStyles.length > 0 ? `${countStyles.length} styles applied` : 'No style applied');
     }
