@@ -20,7 +20,7 @@ const cancel = () => {
 
 <template>
   <!-- Section title -->
-  <div class="section-title">Apply changes to current page or entire project</div>
+  <div class="section-title">File(s) selection</div>
 
   <!-- Radio buttons -->
   <div class="radio change-location">
@@ -53,9 +53,13 @@ const cancel = () => {
   </div>
 
   <footer>
-    <p id="version">v1.5.0</p>
-    <a href="https://www.github.com/maximedaraize/style-sync" target="_blank" rel="noopener noreferrer"> Open a issue on
-      Github</a>
+    <p id="version">1.5.0</p>
+    <a href="https://www.buymeacoffee.com/maximedaraize" target="_blank">
+      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24">
+        <path fill="currentColor"
+          d="M7 22h10a1 1 0 0 0 .99-.858L19.867 8H21V6h-1.382l-1.724-3.447A.998.998 0 0 0 17 2H7c-.379 0-.725.214-.895.553L4.382 6H3v2h1.133L6.01 21.142A1 1 0 0 0 7 22zm10.418-11H6.582l-.429-3h11.693l-.428 3zm-9.551 9l-.429-3h9.123l-.429 3H7.867zM7.618 4h8.764l1 2H6.618l1-2z" />
+      </svg>
+    </a>
   </footer>
 </template>
 
@@ -94,7 +98,17 @@ footer {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding-inline: 16px;
+  padding-inline: 8px 16px;
   border-top: 1px solid #ebebeb;
+}
+
+svg {
+  color: rgb(200, 208, 220);
+  transition: color 0.2s ease;
+}
+
+svg:hover {
+  color: var(--black8-opaque);
+  cursor: pointer;
 }
 </style>
